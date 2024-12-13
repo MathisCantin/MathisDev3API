@@ -5,7 +5,7 @@ info:
   description: "Documentation de l'API pour la gestion des utilisateurs et des entraînements."
 
 servers:
-  - url: 'http://localhost:3000/api'
+  - url: 'https://mathisdev3api.onrender.com/api'
     description: 'Serveur de développement'
 
 components:
