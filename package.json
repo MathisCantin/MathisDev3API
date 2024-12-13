@@ -19,7 +19,7 @@
     "ignore": [
       "src/public"
     ],
-    "exec": "./node_modules/.bin/ts-node --files -r tsconfig-paths/register ./src"
+    "exec": "./node_modules/.bin/ts-node --files -r ./src"
   },
   "engines": {
     "node": ">=16.6.0"
