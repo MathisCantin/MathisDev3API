@@ -3,7 +3,6 @@
 const dotenv = require('dotenv');
 const path = require('path');
 const moduleAlias = require('module-alias');
-require('module-alias/register');
 
 // Check the env
 const NODE_ENV = (process.env.NODE_ENV || 'development');
