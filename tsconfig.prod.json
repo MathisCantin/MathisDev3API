@@ -3,7 +3,11 @@
   "compilerOptions": {
     "sourceMap": false,
     "removeComments": true,
-    "noImplicitAny": false
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "types": ["node", "@types/fs-extra"]
   },
   "exclude": [
     "spec",
