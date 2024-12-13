@@ -1,35 +1,41 @@
-## About
+# Documentation de l'API
 
-This project was created with [express-generator-typescript](https://github.com/seanpmaxwell/express-generator-typescript).
+## Installation de l'API sur un poste local
 
+### Prérequis
 
-## Available Scripts
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
+- **Node.js** version 16.6.0 ou supérieure (vous pouvez télécharger Node.js ici : https://nodejs.org/)
+- **MongoDB** Un service de base de données MongoDB.
 
-### `npm run dev` or `npm run dev:hot` (hot reloading)
+### Étapes d'installation
 
-Run the server in development mode.
+```bash
+# Clonez le dépôt Git
+git clone https://github.com/votre-utilisateur/votre-repository.git
+cd votre-repository
 
-### `npm test` or `npm run test:hot` (hot reloading)
+# Installez les dépendances
+npm install
 
-Run all unit-tests.
+### Étapes de création de la base de données.
 
-### `npm test -- "name of test file" (i.e. users).`
+##Crée une base de données
 
-Run a single unit-test.
+##Crée deux colleciton pour les utilisateurs et entrainements
 
-### `npm run lint`
+#Exporter les données dans la colleciton correspondeance qui se retrouve dans le dossier /dev/utilisateurs.json et /dev/entrainements.json
 
-Check for linting errors.
+# Modifiez le fichier `.env` et ajoutez vos informations sensibles
+# Exemple de fichier `.env` :
+# MONGO_URI=mongodb://localhost:27017/nom_de_votre_base_de_donnees
+# PORT=3000
+# COOKIE_SECRET=secret_unique
 
-### `npm run build`
+# Compilez l'API
+npm run build
 
-Build the project for production.
+# Démarrez l'API
+npm start
 
-### `npm start`
-
-Run the production build (Must be built first).
-
-
-## Additional Notes
-
-- If `npm run dev` gives you issues with bcrypt on MacOS you may need to run: `npm rebuild bcrypt --build-from-source`. 
+# Url de l'api en ligne: https://mathisdev3api.onrender.com/
