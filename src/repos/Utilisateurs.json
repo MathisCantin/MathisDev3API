@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "60f8a74b5b7f8f0a59c1e490",
+    "nom": "Jean Dupont",
+    "email": "jean.dupont@example.com",
+    "motDePasse": "motdepasse123",
+    "dateInscription": "2024-01-15T08:30:00Z",
+    "entrainements": ["60f8a74b5b7f8f0a59c1e497", "60f8a74b5b7f8f0a59c1e500"]
+  },
+  {
+    "_id": "60f8a74b5b7f8f0a59c1e491",
+    "nom": "Marie Martin",
+    "email": "marie.martin@example.com",
+    "motDePasse": "motdepasse456",
+    "dateInscription": "2024-02-10T09:00:00Z",
+    "entrainements": ["60f8a74b5b7f8f0a59c1e498", "60f8a74b5b7f8f0a59c1e502"]
+  },
+  {
+    "_id": "60f8a74b5b7f8f0a59c1e492",
+    "nom": "Pierre Lefevre",
+    "email": "pierre.lefevre@example.com",
+    "motDePasse": "motdepasse789",
+    "dateInscription": "2024-03-05T10:00:00Z",
+    "entrainements": ["60f8a74b5b7f8f0a59c1e503", "60f8a74b5b7f8f0a59c1e499"]
+  },
+  {
+    "_id": "60f8a74b5b7f8f0a59c1e493",
+    "nom": "Sophie Bernard",
+    "email": "sophie.bernard@example.com",
+    "motDePasse": "motdepasse012",
+    "dateInscription": "2024-04-01T07:00:00Z",
+    "entrainements": ["60f8a74b5b7f8f0a59c1e500", "60f8a74b5b7f8f0a59c1e504"]
+  }
+]

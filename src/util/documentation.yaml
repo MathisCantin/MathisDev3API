@@ -1,0 +1,331 @@
+openapi: 3.0.0
+info:
+  title: API Documentation
+  version: 1.0.0
+  description: "Documentation de l'API pour la gestion des utilisateurs et des entraînements."
+
+servers:
+  - url: 'http://localhost:3000/api'
+    description: 'Serveur de développement'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+paths:
+  /generertoken:
+    post:
+      summary: "Générer un token"
+      description: "Génère un token pour l'authentification avec les informations de l'utilisateur."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                motDePasse:
+                  type: string
+              required:
+                - email
+                - motDePasse
+            example:
+              email: "utilisateur@example.com"
+              motDePasse: "BonMotsDePasse123!"
+      responses:
+        200:
+          description: "Token généré avec succès."
+        400:
+          description: "Erreur dans les paramètres fournis."
+
+  /utilisateurs/id:
+    post:
+      summary: "Récupérer l'ID d'un utilisateur"
+      description: "Récupère l'ID d'un utilisateur en fonction de son email et mot de passe."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                motDePasse:
+                  type: string
+              required:
+                - email
+                - motDePasse
+            example:
+              email: "utilisateur@example.com"
+              motDePasse: "BonMotsDePasse123!"
+      responses:
+        200:
+          description: "ID utilisateur récupéré avec succès."
+        401:
+          description: "Authentification échouée."
+
+  /utilisateurs:
+    post:
+      summary: "Ajouter un utilisateur"
+      description: "Ajoute un nouvel utilisateur."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                utilisateur:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    motDePasse:
+                      type: string
+                    nom:
+                      type: string
+                    prenom:
+                      type: string
+                  required:
+                    - email
+                    - motDePasse
+                    - nom
+                    - prenom
+            example:
+              utilisateur:
+                email: "utilisateur@example.com"
+                motDePasse: "BonMotsDePasse123!"
+                nom: "utilisateur"
+      responses:
+        201:
+          description: "Utilisateur ajouté avec succès."
+        400:
+          description: "Données invalides."
+
+  /entrainements:
+    get:
+      summary: "Lire tous les entraînements publics"
+      description: "Retourne tous les entraînements publics disponibles."
+      responses:
+        200:
+          description: "Entraînements récupérés avec succès."
+
+    post:
+      summary: "Ajouter un nouvel entraînement"
+      description: "Ajoute un nouvel entraînement pour un utilisateur spécifique."
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                utilisateur:
+                  type: string
+                entrainement:
+                  type: object
+                  properties:
+                    titre:
+                      type: string
+                    description:
+                      type: string
+                    duree:
+                      type: integer
+                    date:
+                      type: string
+                      format: date-time
+                    publique:
+                      type: boolean
+                    categories:
+                      type: array
+                      items:
+                        type: string
+                    caloriesBrulees:
+                      type: integer
+                  required:
+                    - titre
+                    - description
+                    - duree
+                    - date
+                    - publique
+                    - categories
+                    - caloriesBrulees
+            example:
+              utilisateur: "674357b75a3808ab657c5a3a"
+              entrainement:
+                titre: "Course 5K"
+                description: "Un entraînement de course de 5 km pour débutants."
+                duree: 30
+                date: "2024-04-01T07:00:00.000Z"
+                publique: true
+                categories:
+                  - "Cardio"
+                  - "Endurance"
+                caloriesBrulees: 300
+      responses:
+        201:
+          description: "Entraînement ajouté avec succès."
+        400:
+          description: "Données invalides."
+
+  /entrainements/{id}:
+    get:
+      summary: "Lire un entraînement par ID"
+      description: "Retourne un entraînement spécifique en fonction de son ID."
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "ID de l'entraînement"
+      responses:
+        200:
+          description: "Entraînement récupéré avec succès."
+        404:
+          description: "Entraînement non trouvé."
+
+    put:
+      summary: "Mettre à jour un entraînement"
+      description: "Met à jour un entraînement existant pour un utilisateur spécifique."
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "ID de l'entraînement"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                utilisateur:
+                  type: string
+                entrainement:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    titre:
+                      type: string
+                    description:
+                      type: string
+                    duree:
+                      type: integer
+                    date:
+                      type: string
+                      format: date-time
+                    publique:
+                      type: boolean
+                    categories:
+                      type: array
+                      items:
+                        type: string
+                    caloriesBrulees:
+                      type: integer
+                  required:
+                    - _id
+                    - titre
+                    - description
+                    - duree
+                    - date
+                    - publique
+                    - categories
+                    - caloriesBrulees
+            example:
+              utilisateur: "674357b75a3808ab657c5a3a"
+              entrainement:
+                _id: "67436291e19f7dc1a04f705e"
+                titre: "Course 5K"
+                description: "Un entraînement de course de 5 km pour débutants."
+                duree: 300
+                date: "2024-04-01T07:00:00.000Z"
+                publique: false
+                categories:
+                  - "Cardio"
+                  - "Endurance"
+                caloriesBrulees: 300
+      responses:
+        200:
+          description: "Entraînement mis à jour avec succès."
+        400:
+          description: "Données invalides."
+
+    delete:
+      summary: "Supprimer un entraînement"
+      description: "Supprime un entraînement spécifique pour un utilisateur."
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "ID de l'entraînement"
+      responses:
+        200:
+          description: "Entraînement supprimé avec succès."
+        404:
+          description: "Entraînement introuvable."
+
+  /entrainements/categorie:
+    get:
+      summary: "Lire les entraînements filtrés par catégorie"
+      description: "Retourne les entraînements filtrés par catégorie."
+      parameters:
+        - name: categorie
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Catégorie de l'entraînement"
+      responses:
+        200:
+          description: "Entraînements récupérés avec succès."
+
+  /entrainements/calories:
+    get:
+      summary: "Lire les entraînements filtrés par calories brûlées"
+      description: "Retourne les entraînements filtrés par nombre de calories brûlées."
+      parameters:
+        - name: calorie
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: "Nombre de calories brûlées"
+      responses:
+        200:
+          description: "Entraînements récupérés avec succès."
+
+  /entrainements/utilisateur:
+    get:
+      summary: "Lire les entraînements d'un utilisateur"
+      description: "Retourne tous les entraînements d'un utilisateur spécifique."
+      parameters:
+        - name: utilisateur
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "ID de l'utilisateur"
+      responses:
+        200:
+          description: "Entraînements récupérés avec succès."
