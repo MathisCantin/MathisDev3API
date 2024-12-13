@@ -19,15 +19,15 @@ cd votre-repository
 ### Installez les dépendances
 npm install
 
-### Étapes de création de la base de données.
+## Étapes de création de la base de données.
 
-###Crée une base de données
+### Créez une base de données à l'aide du service de base de données que vous avez choisi.
 
-###Crée deux colleciton pour les utilisateurs et entrainements
+### Créez deux collections pour les utilisateurs et les entraînements.
 
-###Exporter les données dans la colleciton correspondeance qui se retrouve dans le dossier /dev/utilisateurs.json et /dev/entrainements.json
+### Exporte les données dans la collection correspondante, qui se trouve dans les dossiers /dev/utilisateurs.json et /dev/entrainements.json.
 
-### Modifiez le fichier `.env` et ajoutez vos informations sensibles
+### Modifiez le fichier .env et ajoutez vos informations sensibles.
 ```.env
 Exemple de fichier `.env` :
 MONGO_URI=mongodb://localhost:27017/nom_de_votre_base_de_donnees
