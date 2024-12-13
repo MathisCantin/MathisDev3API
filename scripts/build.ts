@@ -2,61 +2,72 @@ import fs from 'fs-extra';
 import logger from 'jet-logger';
 import childProcess from 'child_process';
 
-
 /**
  * Start
  */
 (async () => {
   try {
-    // Remove current build
     await remove('./dist/');
     await exec('npm run lint', './');
     await exec('tsc --build tsconfig.prod.json', './');
-    // Copy
     await copy('./src/public', './dist/public');
     await copy('./src/views', './dist/views');
   } catch (err) {
     logger.err(err);
-    // eslint-disable-next-line n/no-process-exit
     process.exit(1);
   }
 })();
 
 /**
- * Remove file
+ * Remove file or directory
  */
 function remove(loc: string): Promise<void> {
   return new Promise((res, rej) => {
-    return fs.remove(loc, err => {
-      return (!!err ? rej(err) : res());
+    fs.remove(loc, (err) => {
+      if (err) {
+        logger.err(`Error removing ${loc}: ${err}`);
+        return rej(err);
+      }
+      logger.info(`Successfully removed ${loc}`);
+      res();
     });
   });
 }
 
 /**
- * Copy file.
+ * Copy file or directory
  */
 function copy(src: string, dest: string): Promise<void> {
   return new Promise((res, rej) => {
-    return fs.copy(src, dest, err => {
-      return (!!err ? rej(err) : res());
+    fs.copy(src, dest, (err) => {
+      if (err) {
+        logger.err(`Error copying from ${src} to ${dest}: ${err}`);
+        return rej(err);
+      }
+      logger.info(`Successfully copied from ${src} to ${dest}`);
+      res();
     });
   });
 }
 
 /**
- * Do command line command.
+ * Execute command line command
  */
 function exec(cmd: string, loc: string): Promise<void> {
   return new Promise((res, rej) => {
-    return childProcess.exec(cmd, {cwd: loc}, (err, stdout, stderr) => {
-      if (!!stdout) {
+    childProcess.exec(cmd, { cwd: loc }, (err, stdout, stderr) => {
+      if (stdout) {
         logger.info(stdout);
       }
-      if (!!stderr) {
+      if (stderr) {
         logger.warn(stderr);
       }
-      return (!!err ? rej(err) : res());
+      if (err) {
+        logger.err(`Error executing command '${cmd}' in ${loc}: ${err}`);
+        return rej(err);
+      }
+      logger.info(`Successfully executed command: '${cmd}'`);
+      res();
     });
   });
 }
