@@ -10,7 +10,6 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 
 ### Étapes d'installation
 
-```bash
 # Clonez le dépôt Git
 git clone https://github.com/votre-utilisateur/votre-repository.git
 cd votre-repository
