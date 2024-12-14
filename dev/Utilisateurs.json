@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "675b6a06bcc965998f9e3a39"
+  },
+  "nom": "Utilisateur",
+  "email": "Utilisateur@example.com",
+  "motDePasse": "$2b$10$dAAEalWOCEM593iyjYc4DOmBX4hmfugkJa3ScjGIotJhpOLgbKeHi",
+  "entrainements": [
+    "675c6cff741fe72d82ebbb1a",
+    "675c802d9d9e9fb8a2daafbf"
+  ],
+  "dateInscription": {
+    "$date": "2024-12-12T22:56:06.693Z"
+  },
+  "__v": 12
+}]

@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "675c6cff741fe72d82ebbb1a"
+  },
+  "titre": "Course 5k",
+  "description": "Course de 5km",
+  "duree": 30,
+  "date": {
+    "$date": "2024-12-13T17:21:03.634Z"
+  },
+  "publique": true,
+  "categories": [
+    "Cardio",
+    "Endurance"
+  ],
+  "caloriesBrulees": 300,
+  "__v": 0,
+  "repetitions": 1
+},
+{
+  "_id": {
+    "$oid": "675c802d9d9e9fb8a2daafbf"
+  },
+  "titre": "Course de 25km",
+  "description": "C'est pas facile...",
+  "duree": 30,
+  "date": {
+    "$date": "2024-12-13T18:42:53.742Z"
+  },
+  "publique": true,
+  "categories": [
+    "Cardio",
+    "Endurance"
+  ],
+  "caloriesBrulees": 300,
+  "__v": 0
+}]
